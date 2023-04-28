@@ -1,3 +1,4 @@
+![power-button-circle-icon-black-round-minimalist-icon-isolated-on-white-background-power-on](https://user-images.githubusercontent.com/100489181/235271206-69f3aeff-9b17-456b-8fe9-df837423b076.jpg)
 # termux-starterpack
 This script installs essential packages for developers on Ubuntu-based systems without requiring root permissions. It installs packages for web development (e.g. Node.js, Angular, React), database management (e.g. MySQL, MongoDB), text editors (e.g. Sublime Text, Atom), version control (e.g. Git), and more.
 
