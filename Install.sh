@@ -38,7 +38,10 @@ echo -e "${YELLOW}Installing essential packages...${NC}"
 essential_packages=(
   git python python2 python3 curl wget tar zip unzip openssl openssh nano vim build-essential
   clang gdb valgrind
-  neofetch
+  neofetch fzf zsh tigervnc fish
+  tcsh emacs neovim golang ecj openjdk-17 
+  lua54 lua53 lua52 php ruby rust swift 
+  proot proot-distro  
 )
 for package in "${essential_packages[@]}"; do
   echo -ne "${BLUE}Installing ${package}${NC}"
