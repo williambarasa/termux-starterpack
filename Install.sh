@@ -49,7 +49,7 @@ done
 # Front-end dev packages
 echo -e "${YELLOW}Installing front-end development packages...${NC}"
 frontend_dev_packages=(
-  nodejs npm yarn
+  nodejs yarn
   # Add more front-end packages here
   webpack gulp grunt
 )
