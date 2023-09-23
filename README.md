@@ -10,7 +10,11 @@ This script is useful for developers who want to set up their development enviro
 
 In summary, this script installs essential packages for developers on Ubuntu-based systems, without requiring root permissions. It checks if the visudo file exists and removes packages that require root access if it doesn't. It displays a loading spinner while installing each package and informs the user if a package is already 
 installed.
--------------------------------------------------------------------------------------------------------------------------                                  BONUS
+            
+                
+BONUS
+
+
 If you really just gotten started learning bash and the shell, the terminal, zsh
 whatever you call it, then you should definitely check the Pure Bash Bible. (Not made by me btw)
 it has all the resources, commands,everything you SHOULD learn about bash and more
