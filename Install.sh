@@ -53,8 +53,6 @@ done
 echo -e "${YELLOW}Installing front-end development packages...${NC}"
 frontend_dev_packages=(
   nodejs yarn
-  # Add more front-end packages here
-  grunt
 )
 for package in "${frontend_dev_packages[@]}"; do
   echo -ne "${BLUE}Installing ${package}${NC}"
