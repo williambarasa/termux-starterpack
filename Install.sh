@@ -41,7 +41,7 @@ essential_packages=(
   neofetch fzf zsh fish
   tcsh emacs neovim golang ecj openjdk-17 
   lua54 lua53 lua52 php ruby rust swift 
-  proot proot-distro  
+  proot proot-distro hollywood  
 )
 for package in "${essential_packages[@]}"; do
   echo -ne "${BLUE}Installing ${package}${NC}"
@@ -54,7 +54,7 @@ echo -e "${YELLOW}Installing front-end development packages...${NC}"
 frontend_dev_packages=(
   nodejs yarn
   # Add more front-end packages here
-  gulp grunt
+  grunt
 )
 for package in "${frontend_dev_packages[@]}"; do
   echo -ne "${BLUE}Installing ${package}${NC}"
