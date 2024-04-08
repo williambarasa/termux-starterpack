@@ -25,12 +25,12 @@ NC='\033[0m' # No Color
 
 # Display ASCII logo
 echo -e "${RED}"
-echo ' ____              _    ____         '
-echo ' / ___|___ _ __ _ __  ___ ___| |_ ___| _ \ ___ ___ _  _ '
-echo '| |  / _ \| `_ \| `_ \ / _ \/ __| __/ _ \ | | |/ _ \/ __| | | |'
-echo '| |__| (_) | |_) | |_) | __/ (__| || __/ |_| | __/\__ \ |_| |'
-echo ' \____\___/| .__/| .__/ \___|\___|\__\___|____/ \___||___/\__,_|'
-echo '      |_|  |_|                      '
+echo '  ______                                    _____ __             __                             __  '
+echo ' /_  __/__  _________ ___  __  ___  __     / ___// /_____ ______/ /____  _________  ____ ______/ /__'
+echo '  / / / _ \/ ___/ __ `__ \/ / / / |/_/_____\__ \/ __/ __ `/ ___/ __/ _ \/ ___/ __ \/ __ `/ ___/ //_/'
+echo ' / / /  __/ /  / / / / / / /_/ />  </_____/__/ / /_/ /_/ / /  / /_/  __/ /  / /_/ / /_/ / /__/ ,<   '
+echo '/_/  \___/_/  /_/ /_/ /_/\__,_/_/|_|     /____/\__/\__,_/_/   \__/\___/_/  / .___/\__,_/\___/_/|_|  '
+echo '                                                                          /_/                       '
 echo -e "${NC}"
 
 # Essential packages
@@ -39,7 +39,7 @@ essential_packages=(
   git python python2 python3 curl wget tar zip unzip openssl openssh nano vim build-essential
   clang gdb valgrind
   neofetch fzf zsh fish
-  tcsh emacs neovim golang ecj openjdk-17 
+  tcsh emacs neovim golang ecj 
   lua54 lua53 lua52 php ruby rust swift 
   proot proot-distro hollywood  
 )
