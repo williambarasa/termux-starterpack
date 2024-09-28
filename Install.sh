@@ -51,8 +51,8 @@ for package in "${essential_packages[@]}"; do
   echo -e "\r${BLUE}Installing ${package}...${GREEN}Done!${NC}"
 done
 
-# Front-end dev packages
-echo -e "${YELLOW}Installing front-end development packages...${NC}"
+# Node-Js and Yarn
+echo -e "${YELLOW}Installing extra development packages...${NC}"
 frontend_dev_packages=(
   nodejs yarn
 )
