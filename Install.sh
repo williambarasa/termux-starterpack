@@ -34,7 +34,9 @@ echo '                                                                          
 echo -e "${NC}"
 
 # Essential packages
-echo -e "${YELLOW}Installing essential packages...${NC}"
+pkg up -y
+pkg upgrade -y
+echo -e "${YELLOW}Installing Starter Package...${NC}"
 essential_packages=(
   git python python2 python3 curl wget tar zip unzip openssl openssh nano vim build-essential
   clang gdb valgrind
