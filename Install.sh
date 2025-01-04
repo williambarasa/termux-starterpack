@@ -8,15 +8,6 @@ if [ "$(id -u)" = "0" ]; then
   exit 1
 fi
 
-# Asking if the user wants sudo or not
-
-echo "Do you want to run this script with sudo privileges? (y/n)"
-read -r answer
-
-if [[ $answer == "y" || $answer == "Y" ]]; then
-  sudo -E bash "$0" 
-  exit 0
-fi
 
 # Continue with the script without sudo
 echo "Running without sudo privileges."
@@ -50,7 +41,7 @@ essential_packages=(
   lua54 lua53 lua52 php ruby rust swift 
   proot proot-distro hollywood micro emacs 
   htop jython bat lazygit weechat ffmpeg 
-  starship xh ssh gcc cmus mpd helix cmatrix
+  starship xh gcc cmus mpd helix cmatrix
   
 )
 for package in "${essential_packages[@]}"; do
