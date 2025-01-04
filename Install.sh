@@ -41,7 +41,7 @@ essential_packages=(
   lua54 lua53 lua52 php ruby rust swift 
   proot proot-distro hollywood micro emacs 
   htop jython bat lazygit weechat ffmpeg 
-  starship xh gcc cmus mpd helix cmatrix
+  starship xh cmus mpd helix cmatrix
   
 )
 for package in "${essential_packages[@]}"; do
