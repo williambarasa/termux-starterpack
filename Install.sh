@@ -8,13 +8,18 @@ if [ "$(id -u)" = "0" ]; then
   exit 1
 fi
 
-# Check if visudo file exists
-if [ ! -f "/etc/sudoers.d/README" ]; then
-  echo "Warning: visudo file not found. Some packages may not be installed."
-  sudo=""
-else
-  sudo="sudo"
+# Asking if the user wants sudo or not
+
+echo "Do you want to run this script with sudo privileges? (y/n)"
+read -r answer
+
+if [[ $answer == "y" || $answer == "Y" ]]; then
+  sudo -E bash "$0" 
+  exit 0
 fi
+
+# Continue with the script without sudo
+echo "Running without sudo privileges."
 
 # Define color codes
 RED='\033[0;31m'
@@ -43,7 +48,10 @@ essential_packages=(
   neofetch fzf zsh fish
   tcsh emacs neovim golang ecj 
   lua54 lua53 lua52 php ruby rust swift 
-  proot proot-distro hollywood  
+  proot proot-distro hollywood micro emacs 
+  htop jython bat lazygit weechat ffmpeg 
+  starship xh ssh gcc cmus mpd helix cmatrix
+  
 )
 for package in "${essential_packages[@]}"; do
   echo -ne "${BLUE}Installing ${package}${NC}"
