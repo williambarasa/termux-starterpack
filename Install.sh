@@ -1,62 +1,70 @@
 #!/bin/bash
 
+# Exit script on errors
 set -e
 
-# Check if script is run as root
+# Check if the script is being run as root
 if [ "$(id -u)" = "0" ]; then
-  echo "This script should not be run as root. Exiting..."
+  echo "Please do not run this script as root. Exiting..."
   exit 1
 fi
 
+echo "Starting the setup process..."
 
-# Continue with the script without sudo
-echo "Running without sudo privileges."
-
-# Define color codes
+# Colors for output
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[0;33m'
 BLUE='\033[0;34m'
-NC='\033[0m' # No Color
+NC='\033[0m' # Reset color
 
-# Display ASCII logo
+# Display a logo
 echo -e "${RED}"
-echo '  ______                                    _____ __             __                             __  '
-echo ' /_  __/__  _________ ___  __  ___  __     / ___// /_____ ______/ /____  _________  ____ ______/ /__'
-echo '  / / / _ \/ ___/ __ `__ \/ / / / |/_/_____\__ \/ __/ __ `/ ___/ __/ _ \/ ___/ __ \/ __ `/ ___/ //_/'
-echo ' / / /  __/ /  / / / / / / /_/ />  </_____/__/ / /_/ /_/ / /  / /_/  __/ /  / /_/ / /_/ / /__/ ,<   '
-echo '/_/  \___/_/  /_/ /_/ /_/\__,_/_/|_|     /____/\__/\__,_/_/   \__/\___/_/  / .___/\__,_/\___/_/|_|  '
-echo '                                                                          /_/                       '
+cat << 'EOF'
+  ______                                    _____ __             __                             __  
+ /_  __/__  _________ ___  __  ___  __     / ___// /_____ ______/ /____  _________  ____ ______/ /__
+  / / / _ \/ ___/ __ `__ \/ / / / |/_/_____\__ \/ __/ __ `/ ___/ __/ _ \/ ___/ __ \/ __ `/ ___/ //_/
+ / / /  __/ /  / / / / / / /_/ />  </_____/__/ / /_/ /_/ / /  / /_/  __/ /  / /_/ / /_/ / /__/ ,<   
+/_/  \___/_/  /_/ /_/ /_/\__,_/_/|_|     /____/\__/\__,_/_/   \__/\___/_/  / .___/\__,_/\___/_/|_|  
+                                                                          /_/                       
+EOF
 echo -e "${NC}"
 
-# Essential packages
+# Update and upgrade packages
 pkg up -y
 pkg upgrade -y
-echo -e "${YELLOW}Installing Starter Package...${NC}"
-essential_packages=(
-  git python python2 python3 curl wget tar zip unzip openssl openssh nano vim build-essential
-  clang gdb valgrind
-  neofetch fzf zsh fish
-  tcsh emacs neovim golang ecj 
-  lua54 lua53 lua52 php ruby rust swift 
-  proot proot-distro hollywood micro emacs 
-  htop jython bat lazygit weechat ffmpeg 
-  starship xh cmus mpd helix cmatrix
-  
+echo -e "${YELLOW}Installing essential packages...${NC}"
+
+# List of packages to install
+packages=(
+  git python python2 python3 curl wget tar zip unzip openssl openssh nano vim clang gdb valgrind
+  neofetch fzf zsh fish tcsh emacs neovim golang lua54 lua53 lua52 php ruby rust swift proot
+  proot-distro hollywood micro htop jython bat lazygit ffmpeg starship xh cmus mpd helix cmatrix
+  nmap net-tools screenfetch tmux jq docker kubectl terraform perl kotlin dart
 )
-for package in "${essential_packages[@]}"; do
-  echo -ne "${BLUE}Installing ${package}${NC}"
-  $sudo apt-get install -y "$package" > /dev/null 2>&1 || (echo -e "\r${BLUE}Installing ${package}...${RED}Failed!${NC}" && exit 1)
-  echo -e "\r${BLUE}Installing ${package}...${GREEN}Done!${NC}"
+
+# Install packages
+for pkg in "${packages[@]}"; do
+  echo -e "${BLUE}Installing $pkg...${NC}"
+  if pkg install -y "$pkg" > /dev/null 2>&1; then
+    echo -e "${GREEN}$pkg installed successfully!${NC}"
+  else
+    echo -e "${RED}Failed to install $pkg. Exiting...${NC}"
+    exit 1
+  fi
 done
 
-# Node-Js and Yarn
-echo -e "${YELLOW}Installing extra development packages...${NC}"
-frontend_dev_packages=(
-  nodejs yarn
-)
-for package in "${frontend_dev_packages[@]}"; do
-  echo -ne "${BLUE}Installing ${package}${NC}"
-  $sudo apt-get install -y "$package" > /dev/null 2>&1 || (echo -e "\r${BLUE}Installing ${package}...${RED}Failed!${NC}" && exit 1)
-  echo -e "\r${BLUE}Installing ${package}...${GREEN}Done!${NC}"
+# Install Node.js and Yarn
+echo -e "${YELLOW}Installing Node.js and Yarn...${NC}"
+dev_packages=(nodejs yarn)
+for pkg in "${dev_packages[@]}"; do
+  echo -e "${BLUE}Installing $pkg...${NC}"
+  if pkg install -y "$pkg" > /dev/null 2>&1; then
+    echo -e "${GREEN}$pkg installed successfully!${NC}"
+  else
+    echo -e "${RED}Failed to install $pkg. Exiting...${NC}"
+    exit 1
+  fi
 done
+
+echo -e "${GREEN}Setup is complete!${NC}"
