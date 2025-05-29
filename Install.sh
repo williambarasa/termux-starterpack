@@ -35,6 +35,10 @@ pkg up -y
 pkg upgrade -y
 echo -e "${YELLOW}Installing essential packages...${NC}"
 
+# Install package repos 
+pkg in x11-repo
+pkg in root-repo 
+
 # List of packages to install
 packages=(
   git python python2 python3 curl wget tar zip unzip openssl openssh nano vim clang gdb valgrind
