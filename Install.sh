@@ -44,7 +44,7 @@ packages=(
   git python python2 python3 curl wget tar zip unzip openssl openssh nano vim clang gdb valgrind
   neofetch fzf zsh fish tcsh emacs neovim golang lua54 lua53 lua52 php ruby rust swift proot
   proot-distro hollywood micro htop jython bat lazygit ffmpeg starship xh cmus mpd helix cmatrix
-  nmap net-tools screenfetch tmux jq docker kubectl terraform perl kotlin dart
+  nmap net-tools screenfetch tmux jq docker kubectl perl kotlin dart
 )
 
 # Install packages
