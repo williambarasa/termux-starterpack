@@ -25,31 +25,41 @@ echo -e "${RED}Heads up:${NC} This package can use more than 3GB of storage. Mak
 read -p "Press [ENTER] to continue or [CTRL+C] to cancel..."
 
 echo
-echo -e "${CYAN}Choose installation type:${NC}"
-echo "1) Full installation (all packages)"
-echo "2) Minimal installation (basic packages only)"
-read -p "Enter 1 or 2 [default: 1]: " install_type
-install_type=${install_type:-1}
-
+echo -e "${CYAN}Manual selection mode: Choose the packages you want!${NC}"
 full_packages=(
   git python python2 python3 curl wget tar zip unzip openssl openssh nano vim clang gdb valgrind
   neofetch fzf zsh fish tcsh emacs neovim golang lua54 lua53 lua52 php ruby rust swift proot
   proot-distro hollywood micro htop jython bat lazygit ffmpeg starship xh cmus mpd helix cmatrix
   nmap net-tools screenfetch tmux jq docker kubectl perl kotlin dart
 )
-minimal_packages=(git python python3 curl wget nano vim proot htop tmux unzip)
 
-if [ "$install_type" = "2" ]; then
-  packages=("${minimal_packages[@]}")
-else
-  packages=("${full_packages[@]}")
+for i in "${!full_packages[@]}"; do
+  printf "%2d) %s\n" $((i+1)) "${full_packages[$i]}"
+done
+
+echo
+echo -e "${YELLOW}Type the numbers of the packages you want, separated by spaces (e.g., 1 4 7):${NC}"
+read -p "Your choices: " choices
+
+# Build list of selected packages
+selected_packages=()
+for choice in $choices; do
+  idx=$((choice-1))
+  if [ "$idx" -ge 0 ] && [ "$idx" -lt "${#full_packages[@]}" ]; then
+    selected_packages+=("${full_packages[$idx]}")
+  fi
+done
+
+if [ "${#selected_packages[@]}" -eq 0 ]; then
+  echo -e "${RED}No valid choices made. Exiting.${NC}"
+  exit 1
 fi
 
 echo
-echo -e "${GREEN}Starting installation. You'll be asked before each package is installed.${NC}"
+echo -e "${GREEN}You'll be asked before each selected package is installed.${NC}"
 echo
 
-for pkg in "${packages[@]}"; do
+for pkg in "${selected_packages[@]}"; do
   read -p "Do you want to install ${pkg}? [Y/n]: " answer
   answer=${answer,,}
   if [[ "$answer" =~ ^(n|no)$ ]]; then
