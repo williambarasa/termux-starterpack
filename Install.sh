@@ -30,6 +30,9 @@ cat << 'EOF'
 EOF
 echo -e "${NC}"
 
+echo -e "${RED}WARNING:${NC} This package requires more than 3GB of disk space. Make sure you have enough space before continuing."
+read -p "Press [ENTER] to continue or [CTRL+C] to abort..."
+
 # Update and upgrade packages
 pkg up -y
 pkg upgrade -y
